@@ -1,24 +1,16 @@
-import React, { useEffect, useState} from 'react';
+import React from 'react';
 import config from './config'
-
+import { useAppContext } from './context/context';
+import { useFetch } from './hooks/useFetch';
 const ApiUrl = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 function App() {
-
-  let [names, setNames] = useState([ ]);
-
-  useEffect(() => {
-    fetch(ApiUrl + "/authors")
-      .then(response => response.json())
-      .then(data => setNames(data))
-      .catch(err => console.log(err))
-  }, []);
-
-
+const appContext = useAppContext();
+const posts = useFetch(appContext.postURL)
   return (
     <div>
       App is running - good work: 
-      { names.map(author => author.firstName + " ")}
+      {posts.map(post => post.title)}
     </div>
   );
 }
