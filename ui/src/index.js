@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ContextProvider } from './context'
@@ -7,7 +8,9 @@ import { ContextProvider } from './context'
 ReactDOM.render(
   <React.StrictMode>
     <ContextProvider>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </ContextProvider>
   </React.StrictMode>,
   document.getElementById('root')
