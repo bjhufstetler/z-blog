@@ -4,16 +4,17 @@ import { Bar, Login, CreateAccount, Posts, NewPost } from './components';
 
 function App() {
   const users = useFetch('users');
-  const posts = useFetch('posts');
-  //const [account, setAccount] = useState({username: null, user_id: null, loggedIn: false})
+  const posts = useFetch('post');
+  const [account, setAccount] = useState({username: 'aaa', user_id: 1, loggedIn: false})
   const [data, setData] = useState([])
   useEffect(() => {
     if(posts.load && users.load) {
-      let tmp = [...posts].map(post => {
-        let userData = users.filter(user => user.id === post.user_id)
+      let tmp = [...posts.data].map(post => {
+        let userData = users.data.filter(user => user.id === post.user_id)[0]
         return({...post, userData})
       });
       setData(tmp)
+      console.log('tmp', tmp)
     }
   },[users.load, posts.load]);
   return (
@@ -22,7 +23,7 @@ function App() {
       <Login />
       <CreateAccount />
       <NewPost />
-      <Posts data={data}/>
+      <Posts data={data} account={account}/>
     </>
   );
 }
