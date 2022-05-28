@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from '@mui/system';
-import config from '../config'
+//import config from '../config'
 import { useEffect } from 'react';
-const ApiUrl = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
+//const ApiUrl = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 export const Bar = () => {
     const tmpUsers = [
@@ -14,10 +14,11 @@ export const Bar = () => {
       ]
     const [users, setUsers] = useState(tmpUsers)
     
+    
     useEffect(() => {
-        getUsers();
+        setUsers(users)
     }, []);
-
+/*
     const getUsers = () => {
         fetch(`${ApiUrl}/api/users`)
             .then(res => {
@@ -26,6 +27,7 @@ export const Bar = () => {
             })
 
     };
+    */
 
     return (
         <AppBar position='static'>
