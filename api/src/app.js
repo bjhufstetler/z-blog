@@ -3,10 +3,24 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true, type: '*/x-www-form-urlencoded'}));
 
 const env = process.env.NODE_ENV || 'development'
 const config = require('../knexfile')[env]
 const knex = require('knex')(config)
+
+app.use((req, res, next) => {
+    res.header({ 'Access-Control-Allow-Origin': 'http://localhost:3000' });
+    res.header({
+        'Access-Control-Allow-Headers':
+        'Origin, X-Requested-Wigh, Content-Type, Accept',
+    });
+    res.header({
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+    });
+    next();
+});
 
 app.get('/', (request, response) => {
     response.set("Access-Control-Allow-Origin", "*");
@@ -51,6 +65,7 @@ app.post('/api/:table', (req, res) => {
 });
 
 app.patch('/api/:table/:id', (req, res) => {
+    console.log('req.body: ', req.body)
     knex(req.params.table)
     .where('id', req.params.id)
     .update(req.body)

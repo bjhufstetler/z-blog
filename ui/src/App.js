@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useFetch } from './hooks';
 import { Bar, Login, CreateAccount, Posts, NewPost } from './components';
+import './App.css'
 
 function App() {
   const users = useFetch('users');
   const posts = useFetch('post');
-  const [account, setAccount] = useState({username: 'aaa', user_id: 1, loggedIn: false})
   const [data, setData] = useState([])
   useEffect(() => {
     if(posts.load && users.load) {
@@ -14,17 +14,16 @@ function App() {
         return({...post, userData})
       });
       setData(tmp)
-      console.log('tmp', tmp)
     }
   },[users.load, posts.load]);
   return (
-    <>
+    <div className='app'>
       <Bar />
       <Login />
       <CreateAccount />
       <NewPost />
-      <Posts data={data} account={account}/>
-    </>
+      <Posts data={data} />
+    </div>
   );
 }
 

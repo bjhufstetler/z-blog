@@ -1,0 +1,19 @@
+.login {
+    background-color: rgba(34, 51, 59, 1);
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: rgba(234, 224, 213, 1);
+}
+
+.btnLogin, .btnCancelLogin {
+    border: none;
+    background-color: rgba(0,0,0,0);
+    color: rgba(234, 224, 213, 1);
+    margin: 10px;
+}
+
+.loginInputs * {
+    margin: 10px
+}

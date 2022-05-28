@@ -1,5 +1,5 @@
 .post {
-    background-color: grey;
+    background-color: rgba(94, 80, 63, 1);
     margin: 5px;
     padding: 15px;
     border-radius: 10px;
@@ -8,17 +8,51 @@
 .title {
     font-size: 25px;
     word-wrap: normal;
+    justify-self: left;
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.title input {
+    width: 400px;
 }
 
 .head {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 10fr 3fr;
+    justify-items: center;
     align-items: center;
     margin-bottom: 10px;
 }
 
-button {
+.edit, .save, .delete {
+    border: none;
+    background-color: rgba(94, 80, 63, 1);
     margin: 5px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 10px;
+}
+
+.delete {
+    color: rgb(243, 133, 133);
+}
+
+.save {
+    color: rgb(99, 214, 99);
+}
+
+.expand {
+    padding: 10px;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color:rgba(234, 224, 213, 1);
+}
+
+.content {
+    background-color: rgba(10, 9, 8, 1);
+    border-radius: 10px;
+    padding: 15px;
+    color: rgba(234, 224, 213, 1);
 }

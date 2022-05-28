@@ -5,10 +5,11 @@ const appContext = React.createContext();
 const updateAppContext = React.createContext();
 
 const defaultAppContext = {
-    username: '',
-    loggedIn: false,
-    userURL: 'users',
-    postURL: 'post'
+    username: 'aaa',
+    user_id: 1,
+    login: false,
+    loggedIn: true,
+    myContent: true,
 };
 
 export const useAppContext = () => { return(useContext(appContext)) };
