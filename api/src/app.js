@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true, type: '*/x-www-form-urlencoded'}));
 const env = process.env.NODE_ENV || 'development'
 const config = require('../knexfile')[env]
 const knex = require('knex')(config)
-
+/*
 app.use((req, res, next) => {
     res.header({ 'Access-Control-Allow-Origin': 'http://localhost:3000' });
     res.header({
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
     });
     next();
 });
-
+*/
 app.get('/', (request, response) => {
     response.set("Access-Control-Allow-Origin", "*");
     response.status(200).send('App root route running');
