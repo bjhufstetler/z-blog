@@ -3,7 +3,7 @@ import { useFetch } from '../hooks';
 
 export const Bar = () => {
     const [users, setUsers] = useState([]);
-    const { data } = useFetch('https://z-blog-api.herokuapp.com/api/users')
+    const { data } = useFetch('users')
     useEffect(() => {
         setUsers(data)
     }, [data])
