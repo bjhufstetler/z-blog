@@ -1,8 +1,8 @@
 import React from 'react';
-import config from './config'
+//import config from './config'
 import { useAppContext } from './context/context';
 import { useFetch } from './hooks/useFetch';
-const ApiUrl = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
+//const ApiUrl = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 function App() {
 const appContext = useAppContext();

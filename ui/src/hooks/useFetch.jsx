@@ -17,7 +17,7 @@ export const useFetch = (url) => {
                 return res.json();
             } else {
                 throw new Error('Cannot convert response to json');
-            };
+            }
         })
         .then( json => setData(json) )
         .catch( e => setErr(e) )
