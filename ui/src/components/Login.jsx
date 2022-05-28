@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const Bar = () => {
+export const Login = () => {
     return (
-        <>Z BLOG</>
+        <>Login</>
     )
 }
