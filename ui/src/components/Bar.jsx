@@ -20,7 +20,11 @@ export const Bar = () => {
 
     const getUsers = () => {
         fetch(`${ApiUrl}/api/users`)
-            .then(res => setUsers(res))
+            .then(res => {
+                console.log(res)
+                setUsers(res)
+            })
+
     };
 
     return (
@@ -31,9 +35,12 @@ export const Bar = () => {
                         <IconButton>
                             <MenuIcon />
                         </IconButton>
-                        {users?.map((user, index) => {
-                            return(<Typography key={index}>{user.first}</Typography>)
-                        })}
+                        {users ? 
+                            users.map((user, index) => {
+                                return(<Typography key={index}>{user.first}</Typography>)
+                            })
+                            : null
+                        }
                     </Box>
                 </Toolbar>
             </Container>
