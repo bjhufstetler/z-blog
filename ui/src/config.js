@@ -5,7 +5,7 @@ const config = {
     },
 
     production: {
-        apiUrl: "https://bsdi-poc-api.herokuapp.com"
+        apiUrl: "https://z-blog-api.herokuapp.com"
     },
     test: {
         apiUrl: ''
