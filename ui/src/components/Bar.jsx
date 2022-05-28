@@ -3,7 +3,7 @@ import { AppBar, Container, IconButton, Toolbar, Typography } from '@mui/materia
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box } from '@mui/system';
 //import config from '../config'
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 //const ApiUrl = config[process.env.REACT_APP_NODE_ENV || "development"].apiUrl;
 
 export const Bar = () => {
@@ -15,10 +15,10 @@ export const Bar = () => {
     const [users, setUsers] = useState(tmpUsers)
     
     
+    /*
     useEffect(() => {
         setUsers(users)
     }, []);
-/*
     const getUsers = () => {
         fetch(`${ApiUrl}/api/users`)
             .then(res => {
