@@ -13,7 +13,6 @@ export const useFetch = (url) => {
         fetch(`${baseURL}${url}`)
         .then( res => {
             if(res.ok) {
-                console.log(res)
                 return res.json();
             } else {
                 throw new Error('Cannot convert response to json');

@@ -1,19 +1,46 @@
 import React,  { useState } from 'react';
+import bcrypt from 'bcryptjs';
+import { useFetch } from '../hooks';
 import { useAppContext, useUpdateAppContext } from '../context';
 import './Login.css'
 
 export const Login = () => {
     const appContext = useAppContext();
     const setAppContext = useUpdateAppContext();
-    const [loginInputs, setLoginInputs] = useState({username: '', password: ''})
+    const { data:users } = useFetch('users');
+    const [loginInputs, setLoginInputs] = useState({note:'', username: '', password: ''})
 
     const handleChange = ({key, value}) => {
         let tmp = {...loginInputs};
         tmp[key] = value;
         setLoginInputs(tmp);
     }
-    const handleLogin = () => {
-
+    const handleLoginClick = () => {
+        let note = 'Unknown Username';
+        console.log(users)
+        const userFound = users?.filter(user => user.username === loginInputs.username)[0]
+        let userAuth = false;
+        if ( userFound ) {
+            note = 'Invalid Password';
+            const hash = userFound.password;
+            const salt = userFound.salt;
+            const authHash = bcrypt.hashSync(loginInputs.password, salt);
+            userAuth = authHash === hash;
+        }
+        if (userAuth) { 
+            note = '';
+            setAppContext({
+                username: loginInputs.username,
+                user_id: userFound.id,
+                login: false,
+                loggedIn: true,
+                myContent: true
+                }
+            )
+        } else {
+            setLoginInputs({...loginInputs, password: ''})
+        }
+        setLoginInputs({...loginInputs, note})
     };
     return (
         <>
@@ -36,8 +63,9 @@ export const Login = () => {
                             onChange={e => handleChange({key: 'password', value: e.target.value})}></input>
                     </div>
                     <div>
-                        <button className='btnLogin' onClick={() => handleLogin()}>Login</button>
+                        <button className='btnLogin' onClick={() => handleLoginClick()}>Login</button>
                         <button className='btnCancelLogin' onClick={() => setAppContext({...appContext, login: false})}>Cancel</button>
+                        <div className='note'>{loginInputs.note}</div>
                     </div>
                 </div>
                 : 

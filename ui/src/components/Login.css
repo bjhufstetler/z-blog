@@ -17,3 +17,7 @@
 .loginInputs * {
     margin: 10px
 }
+
+.note {
+    color: rgb(243, 133, 133);
+}
