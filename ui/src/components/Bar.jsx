@@ -16,9 +16,6 @@ export const Bar = () => {
     
     useEffect(() => {
         getUsers();
-        return () => {
-            setUsers([]);
-        };
     }, []);
 
     const getUsers = () => {
@@ -34,7 +31,7 @@ export const Bar = () => {
                         <IconButton>
                             <MenuIcon />
                         </IconButton>
-                        {users.map((user, index) => {
+                        {users?.map((user, index) => {
                             return(<Typography key={index}>{user.first}</Typography>)
                         })}
                     </Box>
