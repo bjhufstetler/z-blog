@@ -22,6 +22,6 @@ export const CRUD = ({ method, path, data }) => {
             return res.json();
         } else {
             throw new Error('Cannot convert response to json');
-        };
+        }
     });
 };
