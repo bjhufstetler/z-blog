@@ -56,10 +56,12 @@ export const Login = () => {
             const hash = bcrypt.hashSync(loginInputs.password, salt)
             let tmp = {...loginInputs, salt, password: hash}
             delete(tmp['note'])
+            delete(tmp['duplicate'])
             CRUD({method: 'POST', path: 'users', data: tmp})
                 .then(res => {
+                    console.log(res)
                     const user_id = res.filter(user => user.username === loginInputs.username)[0].id
-                    setAppContext({...appContext, username: loginInputs.username, login: false, create: false, myContent: true, user_id, loggedIn: true})
+                    setAppContext({...appContext, username: loginInputs.username, login: false, create: false, myContent: true, user_id, loggedIn: true, users: res})
                 })
         }
     }
