@@ -10,6 +10,9 @@ const defaultAppContext = {
     login: false,
     loggedIn: true,
     myContent: true,
+    data: [],
+    posts: [],
+    users: []
 };
 
 export const useAppContext = () => { return(useContext(appContext)) };

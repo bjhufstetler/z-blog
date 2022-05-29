@@ -1,28 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFetch } from './hooks';
 import { Bar, Login, CreateAccount, Posts, NewPost } from './components';
+import { useAppContext, useUpdateAppContext } from './context';
 import './App.css'
 
 function App() {
-  const users = useFetch('users');
-  const posts = useFetch('post');
-  const [data, setData] = useState([])
+  const appContext = useAppContext();
+  const setAppContext = useUpdateAppContext();
+  const { data:users } = useFetch('users');
+  const { data:posts } = useFetch('post');
+
   useEffect(() => {
-    if(posts.load && users.load) {
-      let tmp = [...posts.data].map(post => {
-        let userData = users.data.filter(user => user.id === post.user_id)[0]
+    setAppContext({...appContext, users, posts})
+  }, [users,posts])
+  
+  useEffect(() => {
+    if(appContext.posts.length > 0 && appContext.users.length > 0) {
+      let tmp = [...appContext.posts].map(post => {
+        let userData = appContext.users.filter(user => user.id === post.user_id)[0]
         return({...post, userData})
       });
-      setData(tmp)
+      setAppContext({...appContext, data: tmp})
+      console.log('data updated')
     }
-  },[users.load, posts.load]);
+  },[appContext.users, appContext.posts]);
+  useEffect(() => {
+    console.log(appContext)
+  }, [appContext.data])
   return (
     <div className='app'>
       <Bar />
       <Login />
       <CreateAccount />
       <NewPost />
-      <Posts data={data} />
+      <Posts />
     </div>
   );
 }

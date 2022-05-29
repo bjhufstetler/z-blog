@@ -1,24 +1,22 @@
 import React,  { useState } from 'react';
 import bcrypt from 'bcryptjs';
-import { useFetch } from '../hooks';
 import { useAppContext, useUpdateAppContext } from '../context';
-import './Login.css'
+import './Login.css';
 
 export const Login = () => {
     const appContext = useAppContext();
     const setAppContext = useUpdateAppContext();
-    const { data:users } = useFetch('users');
-    const [loginInputs, setLoginInputs] = useState({note:'', username: '', password: ''})
+    const [loginInputs, setLoginInputs] = useState({note:'', username: '', password: ''});
 
     const handleChange = ({key, value}) => {
         let tmp = {...loginInputs};
         tmp[key] = value;
         setLoginInputs(tmp);
-    }
+    };
+
     const handleLoginClick = () => {
         let note = 'Unknown Username';
-        console.log(users)
-        const userFound = users?.filter(user => user.username === loginInputs.username)[0]
+        const userFound = appContext.users?.filter(user => user.username === loginInputs.username)[0];
         let userAuth = false;
         if ( userFound ) {
             note = 'Invalid Password';
@@ -29,18 +27,19 @@ export const Login = () => {
         }
         if (userAuth) { 
             note = '';
-            setAppContext({
-                username: loginInputs.username,
-                user_id: userFound.id,
-                login: false,
-                loggedIn: true,
-                myContent: true
+            setAppContext(
+                {
+                    username: loginInputs.username,
+                    user_id: userFound.id,
+                    login: false,
+                    loggedIn: true,
+                    myContent: true
                 }
-            )
+            );
         } else {
-            setLoginInputs({...loginInputs, password: ''})
+            setLoginInputs({...loginInputs, password: ''});
         }
-        setLoginInputs({...loginInputs, note})
+        setLoginInputs({...loginInputs, note});
     };
     return (
         <>

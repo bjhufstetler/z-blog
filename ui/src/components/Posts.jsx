@@ -1,17 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Post } from './'
+import { useAppContext } from '../context';
 import './Posts.css'
 
-export const Posts = ({ data }) => {
+export const Posts = () => {
+    const appContext = useAppContext();
     return (
-        <>{data.sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1).map((post, index) => (
+        <>{[...appContext.data].sort((a, b) => (a.timestamp < b.timestamp) ? 1 : -1).map((post, index) => (
             <Post post={post} key={index} />
-            
         ))}</>
     )
-}
-
-Posts.propTypes = {
-    data: PropTypes.array
 }

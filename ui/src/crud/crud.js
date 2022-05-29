@@ -15,13 +15,12 @@ export const CRUD = ({ method, path, data }) => {
         },
         body: JSON.stringify(tmp)
     }
-    console.log(fetchBody)
-    fetch(`${baseURL}${path}/${id}`, fetchBody)
+    return fetch(`${baseURL}${path}/${id}`, fetchBody)
     .then(res => {
         if (res.ok) {
             return res.json();
         } else {
             throw new Error('Cannot convert response to json');
         }
-    });
+    })
 };

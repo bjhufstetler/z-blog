@@ -52,16 +52,19 @@ app.get('/api/:table', (req, res) => {
 
 app.post('/api/:table', (req, res) => {
     knex(req.params.table)
-    .insert(req.body)
-    .then(data => res.status(201).json(data))
-    .catch(err => {
-        console.log(err);
-        return res.json({
-            success: false,
-            message: 'An error occured, please contact your network administrator.',
-            error: err
+        .insert(req.body)
+        .then(() => {
+            knex(req.params.table)
+                .then(data => res.status(201).json(data))
+        })
+        .catch(err => {
+            console.log(err);
+            return res.json({
+                success: false,
+                message: 'An error occured, please contact your network administrator.',
+                error: err
+            });
         });
-    });
 });
 
 app.patch('/api/:table/:id', (req, res) => {
