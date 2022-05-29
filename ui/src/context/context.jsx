@@ -5,11 +5,11 @@ const appContext = React.createContext();
 const updateAppContext = React.createContext();
 
 const defaultAppContext = {
-    username: 'aaa',
-    user_id: 1,
+    username: '',
+    user_id: null,
     login: false,
-    loggedIn: true,
-    myContent: true,
+    loggedIn: false,
+    myContent: false,
     data: [],
     posts: [],
     users: []
