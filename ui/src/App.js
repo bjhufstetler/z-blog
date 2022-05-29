@@ -21,12 +21,8 @@ function App() {
         return({...post, userData})
       });
       setAppContext({...appContext, data: tmp})
-      console.log('data updated')
     }
   },[appContext.users, appContext.posts]);
-  useEffect(() => {
-    console.log(appContext)
-  }, [appContext.data])
   return (
     <div className='app'>
       <Bar />
