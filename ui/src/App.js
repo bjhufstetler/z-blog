@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useFetch } from './hooks';
-import { Bar, Login, CreateAccount, Posts, NewPost } from './components';
+import { Bar, Login, Posts, NewPost } from './components';
 import { useAppContext, useUpdateAppContext } from './context';
 import './App.css'
 
@@ -31,7 +31,6 @@ function App() {
     <div className='app'>
       <Bar />
       <Login />
-      <CreateAccount />
       <NewPost />
       <Posts />
     </div>

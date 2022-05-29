@@ -12,12 +12,20 @@ export const Bar = () => {
             <div>
                 {appContext.loggedIn ?
                     <>
-                        <button className='userId' onClick={() => setAppContext({...appContext, myContent: true})}>{`@${appContext.username}`}</button>
-                        <button className='btnStartLogin' onClick={() => setAppContext({myContent: false, login: false, loggedIn: false, username: null, userId: null})}>Logout</button>
+                        <button className='userId' onClick={() => setAppContext({...appContext, myContent: true})}>
+                            {`@${appContext.username}`}
+                        </button>
+                        <button className='btnStartLogin' onClick={() => setAppContext({...appContext, myContent: false, login: false, loggedIn: false, username: null, user_id: null})}>
+                            Logout
+                            </button>
                     </>
                     :
                     appContext.login ?
-                        null : <button className='btnStartLogin' onClick={() => setAppContext({...appContext, login: true})}>Login</button>
+                        null 
+                        : 
+                        <button className='btnStartLogin' onClick={() => setAppContext({...appContext, login: true})}>
+                            Login
+                        </button>
                 }
             </div>
         </div>
